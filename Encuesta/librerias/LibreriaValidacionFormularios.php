@@ -142,6 +142,18 @@ function validarTelefono($valor) {
         $valida = 2;
     }
     return $valida;
+} 
+    
+    function validarFecha($valor) {
+    $valida = 0;
+    $patron = "\'/^\\d{1,2}\\/\\d{1,2}\\/\\d{4}$/\'";
+
+    if (empty($valor)) {
+        $valida = 1;
+    } else if (!preg_match($patron, $valor)) {
+        $valida = 2;
+    }
+    return $valida;
 }
 
 ?>
