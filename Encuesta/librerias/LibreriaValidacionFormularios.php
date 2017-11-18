@@ -146,14 +146,23 @@ function validarTelefono($valor) {
     
     function validarFecha($valor) {
     $valida = 0;
-    $patron = "\'/^\\d{1,2}\\/\\d{1,2}\\/\\d{4}$/\'";
-
+    $fechaMinima="1900-01-01";
+    $fechaMaxima = $fechaMaxima=date("Y-m-d");
     if (empty($valor)) {
         $valida = 1;
-    } else if (!preg_match($patron, $valor)) {
+    } else if (!validateDate($valor, 'Y-m-d')) {
         $valida = 2;
+    } else if($valor<$fechaMinima){
+        $valida = 3;
+    } else if($valor<$fechaMinima){
+        $valida = 4;
     }
     return $valida;
+}
+
+function validateDate($date, $format = 'Y-m-d'){
+    $d = DateTime::createFromFormat($format, $date);
+    return $d && $d->format($format) == $date;
 }
 
 ?>

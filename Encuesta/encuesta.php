@@ -117,7 +117,7 @@
                         //Si no ha habido ningun error, guardamos el valor enviado en el array de cuestionario
                         $encuesta['Apellido2'] = limpiarCampos($_POST['Apellido2']);
                     }
-                    
+
                     //Ejecutamos la funcion de validacion y recogemos el valor devuelto
                     $valida = validarDNI(limpiarCampos($_POST['DNI']));
                     //Si el valor es distinto de 0 ha habido un error y procedemos a tratarlo
@@ -131,7 +131,7 @@
                         //Si no ha habido ningun error, guardamos el valor enviado en el array de cuestionario
                         $encuesta['DNI'] = limpiarCampos($_POST['DNI']);
                     }
-                    
+
                     $valida = validarTelefono(limpiarCampos($_POST['Telefono']));
                     //Si el valor es distinto de 0 ha habido un error y procedemos a tratarlo
                     if ($valida != 0) {
@@ -144,7 +144,7 @@
                         //Si no ha habido ningun error, guardamos el valor enviado en el array de cuestionario
                         $encuesta['Telefono'] = limpiarCampos($_POST['Telefono']);
                     }
-                    
+
                     $valida = validarEmail(limpiarCampos($_POST['Email']));
                     //Si el valor es distinto de 0 ha habido un error y procedemos a tratarlo
                     if ($valida != 0) {
@@ -157,8 +157,8 @@
                         //Si no ha habido ningun error, guardamos el valor enviado en el array de cuestionario
                         $encuesta['Email'] = limpiarCampos($_POST['Email']);
                     }
-                    
-                    $valida = validarCadenaAlfabetica(limpiarCampos($_POST['FechaNacimiento']));
+
+                    $valida = validarFecha(limpiarCampos($_POST['FechaNacimiento']));
                     //Si el valor es distinto de 0 ha habido un error y procedemos a tratarlo
                     if ($valida != 0) {
                         //Asignamos el error producido al valor correspondiente en el array de errores
@@ -170,8 +170,8 @@
                         //Si no ha habido ningun error, guardamos el valor enviado en el array de cuestionario
                         $encuesta['FechaNacimiento'] = limpiarCampos($_POST['FechaNacimiento']);
                     }
-                    
-                    $valida = validarEntero(limpiarCampos($_POST['HorasEstudio']),0,8);
+
+                    $valida = validarEntero(limpiarCampos($_POST['HorasEstudio']), 0, 8);
                     //Si el valor es distinto de 0 ha habido un error y procedemos a tratarlo
                     if ($valida != 0) {
                         //Asignamos el error producido al valor correspondiente en el array de errores
@@ -183,37 +183,38 @@
                         //Si no ha habido ningun error, guardamos el valor enviado en el array de cuestionario
                         $encuesta['HorasEstudio'] = limpiarCampos($_POST['HorasEstudio']);
                     }
-                   
-                    if(!empty($_POST['GradoSatisfaccion'])){
-                        $encuesta['GradoSatisfaccion'] = limpiarCampos($_POST['HorasEstudio']);
-                    }
-                    
-                     $valida = validarEntero(limpiarCampos($_POST['Valoracion']),0,10);
+
+                    $valida = validarEntero(limpiarCampos($_POST['GradoSatisfaccion']), 0, 10);
                     //Si el valor es distinto de 0 ha habido un error y procedemos a tratarlo
                     if ($valida != 0) {
                         //Asignamos el error producido al valor correspondiente en el array de errores
-                        $erroresCampos['Valoracion'] = $arrayErrores[$valida];
+                        $erroresCampos['GradoSatisfaccion'] = $arrayErrores[$valida];
                         //Como ha habido un error, la variable de control $error toma el valor true
                         $error = true;
                         //Si no ha habido ningun error, guardamos el valor enviado en el array de cuestionario
                     } else {
                         //Si no ha habido ningun error, guardamos el valor enviado en el array de cuestionario
-                        $departamento['Valoracion'] = limpiarCampos($_POST['Valoracion']);
-                    }
-                    
-                     if(!empty($_POST['Opiniones'])){
                         $encuesta['GradoSatisfaccion'] = limpiarCampos($_POST['GradoSatisfaccion']);
-                     }
-                    
+                    }
+
+                    if (!empty($_POST['Valoracion'])) {
+                        $encuesta['Valoracion'] = limpiarCampos($_POST['Valoracion']);
+                    }
+
+
+
+                    if (!empty($_POST['Opiniones'])) {
+                        $encuesta['Opiniones'] = limpiarCampos($_POST['Opiniones']);
+                    }
                 }
                 //Si no hemos pulsado el boton, o ha habido un error en la validacion mostrarmos el formulario
                 if (!filter_has_var(INPUT_POST, 'Enviar') || $error) {
                     ?>
-                    <form  action="<?PHP echo $_SERVER['PHP_SELF']; ?>" method="post">
+                    <form id="formulario1" action="<?PHP echo $_SERVER['PHP_SELF']; ?>" method="post">
 
                         <label for="Nombre">Nombre del alumno(*):</label><br />
                         <br /><input type="text" name="Nombre" value="<?php echo $encuesta['Nombre']; ?>"><br /><br />
-                    <?PHP echo $erroresCampos['Nombre']; ?>
+        <?PHP echo $erroresCampos['Nombre']; ?>
 
                         <label for="Apellido1">Primer Apellido del alumno(*):</label><br />
                         <br /><input type="text" name="Apellido1" value="<?php echo $encuesta['Apellido1']; ?>"><br /><br />
@@ -234,7 +235,7 @@
                         <label for="Email">Email del alumno(*):</label><br />
                         <br /><input type="email" name="Email" value="<?php echo $encuesta['Email']; ?>"><br /><br />
         <?PHP echo $erroresCampos['Email']; ?>
-                        
+
                         <label for="FechaNacimiento">Fecha de nacimiento del alumno(*):</label><br />
                         <br /><input type="date" name="FechaNacimiento" value="<?php echo $encuesta['FechaNacimiento']; ?>"><br /><br />
         <?PHP echo $erroresCampos['FechaNacimiento']; ?>
@@ -264,9 +265,9 @@
 
         <?PHP
     } else {
-        
-        foreach($encuesta as $valor){
-            echo $valor."<br />";
+        $encuesta['IP'] = $_SERVER['REMOTE_ADDR'];
+        foreach ($encuesta as $clave => $valor) {
+            echo "$clave:$valor<br />";
         }
         unset($db);
     }
