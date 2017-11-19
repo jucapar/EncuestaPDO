@@ -46,11 +46,11 @@ $sentencia3->execute();
             <?php
             echo("<strong>Fecha y hora actuales:</strong>       $fecha<br /><br />");
 
-            echo("<strong>Número de alumnos participantes:</strong>     $resultadoConsulta1->NumeroParticipantes<br /><br />");
+            echo("<strong>Número de alumnos participantes:</strong> $resultadoConsulta1->NumeroParticipantes<br /><br />");
 
-            echo("<strong>Edad promedio:</strong>".round($resultadoConsulta1->EdadMedia,4,PHP_ROUND_HALF_UP)."<br /><br />");
+            echo("<strong>Edad promedio:</strong> ".round($resultadoConsulta1->EdadMedia,2,PHP_ROUND_HALF_UP)."<br /><br />");
 
-            echo("<strong>Promedio de grado de satisfacción:</strong>".round($resultadoConsulta1->MediaSatisfaccion,4,PHP_ROUND_HALF_UP)."<br /><br />");
+            echo("<strong>Promedio de grado de satisfacción:</strong> ".round($resultadoConsulta1->MediaSatisfaccion,2,PHP_ROUND_HALF_UP)."<br /><br />");
 
             echo("<strong>Número de equipos desde los que se ha realizado la encuesta:</strong>         $resultadoConsulta1->NumeroEquipos<br /><br />");
 

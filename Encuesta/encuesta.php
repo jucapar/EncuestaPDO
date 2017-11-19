@@ -9,7 +9,7 @@
     </head>
     <body>
         <div class="w3-container w3-light-blue" style="width:60%; margin:auto; padding: 40px; height: 100%;">
-
+            <h3>ENCUESTA  INDIVIDUAL DE VALORACIÓN DE LA ASIGNATURA DESARROLLO DE APLICACIONES WEB EN ENTORNO SERVIDOR</h3>
             <?php
             /*
               Autor: Juan Carlos Pastor Regueras
@@ -215,39 +215,39 @@
                 <form class="w3-container" id="formulario1" action="<?PHP echo $_SERVER['PHP_SELF']; ?>" method="post">
 
                     <label for="Nombre">Nombre del alumno(*):</label><br />
-                    <br /><input class="w3-input" type="text" name="Nombre" value="<?php echo $encuesta['Nombre']; ?>"><br /><br />
+                    <br /><input class="w3-input" type="text" name="Nombre" value="<?php echo $encuesta['Nombre']; ?>" required><br /><br />
                     <?PHP echo $erroresCampos['Nombre']; ?>
 
                     <label for="Apellido1">Primer Apellido del alumno(*):</label><br />
-                    <br /><input class="w3-input" type="text" name="Apellido1" value="<?php echo $encuesta['Apellido1']; ?>"><br /><br />
+                    <br /><input class="w3-input" type="text" name="Apellido1" value="<?php echo $encuesta['Apellido1']; ?>" required><br /><br />
                     <?PHP echo $erroresCampos['Apellido1']; ?>
 
                     <label for="Apellido2">Segundo Apellido del alumno(*):</label><br />
-                    <br /><input class="w3-input" type="text" name="Apellido2" value="<?php echo $encuesta['Apellido2']; ?>"><br /><br />
+                    <br /><input class="w3-input" type="text" name="Apellido2" value="<?php echo $encuesta['Apellido2']; ?>" required><br /><br />
                     <?PHP echo $erroresCampos['Apellido2']; ?>
 
                     <label for="DNI">DNI del alumno(*):</label><br />
-                    <br /><input  class="w3-input" type="text" name="DNI" value="<?php echo $encuesta['DNI']; ?>"><br /><br />
+                    <br /><input  class="w3-input" type="text" name="DNI" value="<?php echo $encuesta['DNI']; ?>" required><br /><br />
                     <?PHP echo $erroresCampos['DNI']; ?>
 
                     <label for="Telefono">Telefono del alumno(*):</label><br />
-                    <br /><input class="w3-input" type="text" name="Telefono" value="<?php echo $encuesta['Telefono']; ?>"><br /><br />
+                    <br /><input class="w3-input" type="text" name="Telefono" value="<?php echo $encuesta['Telefono']; ?>" required><br /><br />
                     <?PHP echo $erroresCampos['Telefono']; ?>
 
                     <label for="Email">Email del alumno(*):</label><br />
-                    <br /><input class="w3-input" type="email" name="Email" value="<?php echo $encuesta['Email']; ?>"><br /><br />
+                    <br /><input class="w3-input" type="email" name="Email" value="<?php echo $encuesta['Email']; ?>" required><br /><br />
                     <?PHP echo $erroresCampos['Email']; ?>
 
                     <label for="FechaNacimiento">Fecha de nacimiento del alumno(*):</label><br />
-                    <br /><input class="w3-input" type="date" name="FechaNacimiento" value="<?php echo $encuesta['FechaNacimiento']; ?>"><br /><br />
+                    <br /><input class="w3-input" type="date" name="FechaNacimiento" value="<?php echo $encuesta['FechaNacimiento']; ?>" required><br /><br />
                     <?PHP echo $erroresCampos['FechaNacimiento']; ?>
 
                     <label for="HorasEstudio">Numero de horas de estudio diarias [0-8]: (* y entero)</label><br />
-                    <br /><input class="w3-input" type="number" name="HorasEstudio" value="<?php echo $encuesta['HorasEstudio']; ?>"><br /><br />
+                    <br /><input class="w3-input" type="number" name="HorasEstudio" value="<?php echo $encuesta['HorasEstudio']; ?>" min="0" max="8" required><br /><br />
                     <?PHP echo $erroresCampos['GradoSatisfaccion']; ?>
 
                     <label for="GradoSatisfaccion">Grado de satisfacción [0-10]: (* y entero)</label><br />
-                    <br /><input  class="w3-input"type="number" name="GradoSatisfaccion" value="<?php echo $encuesta['GradoSatisfaccion']; ?>"><br /><br />
+                    <br /><input  class="w3-input"type="number" name="GradoSatisfaccion" value="<?php echo $encuesta['GradoSatisfaccion']; ?>" min="0" max="10" required><br /><br />
                     <?PHP echo $erroresCampos['GradoSatisfaccion']; ?>
                     <div style="margin: 0 auto;width:50%" >
                         <label for="Valoracion">Valoración de los materiales entregados por el profesor:</label><br />
