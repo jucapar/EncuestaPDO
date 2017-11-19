@@ -204,7 +204,7 @@
                 if (!empty($_POST['Valoracion'])) {
                     $encuesta['Valoracion'] = limpiarCampos($_POST['Valoracion']);
                 }
-                
+
                 if (!empty($_POST['Opiniones'])) {
                     $encuesta['Opiniones'] = limpiarCampos($_POST['Opiniones']);
                 }
@@ -212,56 +212,56 @@
             //Si no hemos pulsado el boton, o ha habido un error en la validacion mostrarmos el formulario
             if (!filter_has_var(INPUT_POST, 'Enviar') || $error) {
                 ?>
-                <form id="formulario1" action="<?PHP echo $_SERVER['PHP_SELF']; ?>" method="post">
+                <form class="w3-container" id="formulario1" action="<?PHP echo $_SERVER['PHP_SELF']; ?>" method="post">
 
                     <label for="Nombre">Nombre del alumno(*):</label><br />
-                    <br /><input type="text" name="Nombre" value="<?php echo $encuesta['Nombre']; ?>"><br /><br />
+                    <br /><input class="w3-input" type="text" name="Nombre" value="<?php echo $encuesta['Nombre']; ?>"><br /><br />
                     <?PHP echo $erroresCampos['Nombre']; ?>
 
                     <label for="Apellido1">Primer Apellido del alumno(*):</label><br />
-                    <br /><input type="text" name="Apellido1" value="<?php echo $encuesta['Apellido1']; ?>"><br /><br />
+                    <br /><input class="w3-input" type="text" name="Apellido1" value="<?php echo $encuesta['Apellido1']; ?>"><br /><br />
                     <?PHP echo $erroresCampos['Apellido1']; ?>
 
                     <label for="Apellido2">Segundo Apellido del alumno(*):</label><br />
-                    <br /><input type="text" name="Apellido2" value="<?php echo $encuesta['Apellido2']; ?>"><br /><br />
+                    <br /><input class="w3-input" type="text" name="Apellido2" value="<?php echo $encuesta['Apellido2']; ?>"><br /><br />
                     <?PHP echo $erroresCampos['Apellido2']; ?>
 
                     <label for="DNI">DNI del alumno(*):</label><br />
-                    <br /><input type="text" name="DNI" value="<?php echo $encuesta['DNI']; ?>"><br /><br />
+                    <br /><input  class="w3-input" type="text" name="DNI" value="<?php echo $encuesta['DNI']; ?>"><br /><br />
                     <?PHP echo $erroresCampos['DNI']; ?>
 
                     <label for="Telefono">Telefono del alumno(*):</label><br />
-                    <br /><input type="text" name="Telefono" value="<?php echo $encuesta['Telefono']; ?>"><br /><br />
+                    <br /><input class="w3-input" type="text" name="Telefono" value="<?php echo $encuesta['Telefono']; ?>"><br /><br />
                     <?PHP echo $erroresCampos['Telefono']; ?>
 
                     <label for="Email">Email del alumno(*):</label><br />
-                    <br /><input type="email" name="Email" value="<?php echo $encuesta['Email']; ?>"><br /><br />
+                    <br /><input class="w3-input" type="email" name="Email" value="<?php echo $encuesta['Email']; ?>"><br /><br />
                     <?PHP echo $erroresCampos['Email']; ?>
 
                     <label for="FechaNacimiento">Fecha de nacimiento del alumno(*):</label><br />
-                    <br /><input type="date" name="FechaNacimiento" value="<?php echo $encuesta['FechaNacimiento']; ?>"><br /><br />
+                    <br /><input class="w3-input" type="date" name="FechaNacimiento" value="<?php echo $encuesta['FechaNacimiento']; ?>"><br /><br />
                     <?PHP echo $erroresCampos['FechaNacimiento']; ?>
 
                     <label for="HorasEstudio">Numero de horas de estudio diarias [0-8]: (* y entero)</label><br />
-                    <br /><input type="number" name="HorasEstudio" value="<?php echo $encuesta['HorasEstudio']; ?>"><br /><br />
+                    <br /><input class="w3-input" type="number" name="HorasEstudio" value="<?php echo $encuesta['HorasEstudio']; ?>"><br /><br />
                     <?PHP echo $erroresCampos['GradoSatisfaccion']; ?>
 
                     <label for="GradoSatisfaccion">Grado de satisfacción [0-10]: (* y entero)</label><br />
-                    <br /><input type="number" name="GradoSatisfaccion" value="<?php echo $encuesta['GradoSatisfaccion']; ?>"><br /><br />
+                    <br /><input  class="w3-input"type="number" name="GradoSatisfaccion" value="<?php echo $encuesta['GradoSatisfaccion']; ?>"><br /><br />
                     <?PHP echo $erroresCampos['GradoSatisfaccion']; ?>
-
-                    <label for="Valoracion">Valoración de los materiales entregados por el profesor:</label><br />
-                    <input type="radio" name="Valoracion" value="Muy Malos"> Muy Malos<br />
-                    <input type="radio" name="Valoracion" value="Muy mejorables"> Muy mejorables<br />
-                    <input type="radio" name="Valoracion" value="Regulares">Regulares<br /> 
-                    <input type="radio" name="Valoracion" value="Buenos">Buenos<br />
-                    <input type="radio" name="Valoracion" value="Muy buenos">Muy buenos<br />   
-
-
-                    <label for="Opiniones">Opiniones y sugerencias para mejorar los resultados:</label><br />
-                    <textarea cols="20" rows ="10" name="Opiniones" form="formulario1"><?php echo $encuesta['Opiniones']; ?></textarea>
+                    <div style="margin: 0 auto;width:50%" >
+                        <label for="Valoracion">Valoración de los materiales entregados por el profesor:</label><br />
+                        <input  class="w3-input" type="radio" name="Valoracion" value="Muy Malos" > Muy Malos<br />
+                        <input  class="w3-input" type="radio" name="Valoracion" value="Muy mejorables"> Muy mejorables<br />
+                        <input class="w3-input"type="radio" name="Valoracion" value="Regulares">Regulares<br /> 
+                        <input class="w3-input" type="radio" name="Valoracion" value="Buenos">Buenos<br />
+                        <input class="w3-input" type="radio" name="Valoracion" value="Muy buenos">Muy buenos<br />   
+                    </div>
                     <br /> 
-                    <input type="submit" name="Enviar" value="Enviar">
+                    <label for="Opiniones">Opiniones y sugerencias para mejorar los resultados:</label><br />
+                    <textarea  class="w3-input" cols="20" rows ="10" name="Opiniones" form="formulario1"><?php echo $encuesta['Opiniones']; ?></textarea>
+                    <br /> 
+                    <input class="w3-input" type="submit" name="Enviar" value="Enviar">
                 </form>
             </div>
 

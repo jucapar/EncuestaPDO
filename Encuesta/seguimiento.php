@@ -1,5 +1,4 @@
 <?php
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -30,35 +29,52 @@ $sentencia2->execute();
 $consulta3 = "SELECT Nombre,Apellido1,Apellido2,Opiniones FROM Encuesta WHERE Opiniones != ''";
 $sentencia3 = $db->prepare($consulta3);
 $sentencia3->execute();
-
-echo("Fecha y hora actuales: $fecha<br />");
-
-echo("Número de alumnos participantes:$resultadoConsulta1->NumeroParticipantes<br />");
-
-echo("Edad promedio: $resultadoConsulta1->EdadMedia<br />");
-
-echo("Promedio de grado de satisfacción: $resultadoConsulta1->MediaSatisfaccion<br />");
-
-echo("Número de equipos desde los que se ha realizado la encuesta:$resultadoConsulta1->NumeroEquipos<br />");
-
-echo "Dirección IP de los equipos desde los que se ha realizado la encuesta más de una vez:";
-echo "<table><tr><th>Direccion IP</th><th>Numero de veces que ha realizado la encuesta</th></tr>";
-while($resultadoConsulta2 = $sentencia2->fetch(PDO::FETCH_OBJ)){
-    echo "<tr>";
-    echo "<td>$resultadoConsulta2->IP</td>";
-    echo "<td>$resultadoConsulta2->NumeroEncuestas</td>";
-    echo "</tr>";
-}
-echo "</table>";
-
-echo "Listado de opiniones y sugerencias recibidas:";
-echo "<table><tr><th>Alumno</th><th>Opiniones</th></tr>";
-while($resultadoConsulta3 = $sentencia3->fetch(PDO::FETCH_OBJ)){
-    echo "<tr>";
-    echo "<td>$resultadoConsulta3->Nombre $resultadoConsulta3->Apellido1 $resultadoConsulta3->Apellido2 </td>";
-    echo "<td>$resultadoConsulta3->Opiniones</td>";
-    echo "</tr>";
-}
-
-
 ?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" type="text/css" href="css/w3.css">
+        <title>Seguimiento</title>
+    </head>
+    <body >
+
+        <div class="w3-container w3-light-blue" style="width:60%; margin:auto; padding: 40px; height: 100%;">
+            <h2>RESULTADOS DE LA ENCUESTA</h2>
+            <?php
+            echo("<strong>Fecha y hora actuales:</strong>       $fecha<br /><br />");
+
+            echo("<strong>Número de alumnos participantes:</strong>     $resultadoConsulta1->NumeroParticipantes<br /><br />");
+
+            echo("<strong>Edad promedio:</strong>".round($resultadoConsulta1->EdadMedia,4,PHP_ROUND_HALF_UP)."<br /><br />");
+
+            echo("<strong>Promedio de grado de satisfacción:</strong>".round($resultadoConsulta1->MediaSatisfaccion,4,PHP_ROUND_HALF_UP)."<br /><br />");
+
+            echo("<strong>Número de equipos desde los que se ha realizado la encuesta:</strong>         $resultadoConsulta1->NumeroEquipos<br /><br />");
+
+            echo "<strong>Dirección IP de los equipos desde los que se ha realizado la encuesta más de una vez:</strong><br /><br />";
+            echo "<table class='w3-table-all' style='margin: 0 auto; width: 50%'><tr><th>Direccion IP</th><th>Numero de veces que ha realizado la encuesta</th></tr>";
+            while ($resultadoConsulta2 = $sentencia2->fetch(PDO::FETCH_OBJ)) {
+                echo "<tr>";
+                echo "<td>$resultadoConsulta2->IP</td>";
+                echo "<td>$resultadoConsulta2->NumeroEncuestas</td>";
+                echo "</tr>";
+            }
+            echo "</table><br /><br />";
+
+            echo "<strong>Listado de opiniones y sugerencias recibidas:</strong><br /><br />";
+            echo "<table class='w3-table-all'><tr><th>Alumno</th><th>Opiniones</th></tr>";
+            while ($resultadoConsulta3 = $sentencia3->fetch(PDO::FETCH_OBJ)) {
+                echo "<tr>";
+                echo "<td>$resultadoConsulta3->Nombre $resultadoConsulta3->Apellido1 $resultadoConsulta3->Apellido2 </td>";
+                echo "<td>$resultadoConsulta3->Opiniones</td>";
+                echo "</tr>";
+            }
+            ?>
+
+        </div>
+        <?php
+        unset($db);
+        ?>
