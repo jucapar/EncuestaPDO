@@ -72,6 +72,7 @@ $sentencia3->execute();
                 echo "<td>$resultadoConsulta3->Opiniones</td>";
                 echo "</tr>";
             }
+            echo "</table><br /><br />";
             ?>
 
         </div>
