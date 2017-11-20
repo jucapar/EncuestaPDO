@@ -73,8 +73,9 @@ $sentencia3->execute();
                 echo "</tr>";
             }
             echo "</table><br /><br />";
+            
             ?>
-
+            <input style="margin:0 auto; width: 10%;" class="w3-input" type="button" onclick="location.href='index.php'" name="Volver" value="Volver">
         </div>
         <?php
         unset($db);

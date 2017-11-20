@@ -250,18 +250,19 @@
                     <br /><input  class="w3-input"type="number" name="GradoSatisfaccion" value="<?php echo $encuesta['GradoSatisfaccion']; ?>" min="0" max="10" required><br /><br />
                     <?PHP echo $erroresCampos['GradoSatisfaccion']; ?>
                     <div style="margin: 0 auto;width:50%" >
-                        <label for="Valoracion">Valoración de los materiales entregados por el profesor:</label><br />
-                        <input  class="w3-input" type="radio" name="Valoracion" value="Muy Malos" > Muy Malos<br />
-                        <input  class="w3-input" type="radio" name="Valoracion" value="Muy mejorables"> Muy mejorables<br />
-                        <input class="w3-input"type="radio" name="Valoracion" value="Regulares">Regulares<br /> 
-                        <input class="w3-input" type="radio" name="Valoracion" value="Buenos">Buenos<br />
-                        <input class="w3-input" type="radio" name="Valoracion" value="Muy buenos">Muy buenos<br />   
+                        <label for="Valoracion">Valoración de los materiales entregados por el profesor:</label><br /><br />
+                        <input type="radio" name="Valoracion" value="Muy Malos">   Muy Malos<br />
+                        <input type="radio" name="Valoracion" value="Muy mejorables">   Muy mejorables<br />
+                        <input type="radio" name="Valoracion" value="Regulares">   Regulares<br /> 
+                        <input type="radio" name="Valoracion" value="Buenos">   Buenos<br />
+                        <input type="radio" name="Valoracion" value="Muy buenos">   Muy buenos<br />   
                     </div>
                     <br /> 
-                    <label for="Opiniones">Opiniones y sugerencias para mejorar los resultados:</label><br />
+                    <label for="Opiniones">Opiniones y sugerencias para mejorar los resultados:</label><br /><br />
                     <textarea  class="w3-input" cols="20" rows ="10" name="Opiniones" form="formulario1"><?php echo $encuesta['Opiniones']; ?></textarea>
                     <br /> 
-                    <input class="w3-input" type="submit" name="Enviar" value="Enviar">
+                    <input class="w3-input" style="width: 10%; float:left; margin:0px 20px 20px 0px;" type="submit" name="Enviar" value="Enviar">
+                    <input class="w3-input" style="width: 10%; float:right; margin:0px 0px 20px 20px;" type="button" onclick="location.href = 'index.php'" name="Volver" value="Volver">
                 </form>
             </div>
 
