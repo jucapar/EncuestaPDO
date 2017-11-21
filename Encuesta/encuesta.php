@@ -8,7 +8,7 @@
         <title>Encuesta</title>
     </head>
     <body>
-        <div class="w3-container w3-light-blue" style="width:60%; margin:auto; padding: 40px; height: 100%;">
+        <div class="w3-container w3-light-blue" style="width:80%; margin:auto; padding: 40px; height: 100%;">
             <h3>ENCUESTA  INDIVIDUAL DE VALORACIÓN DE LA ASIGNATURA DESARROLLO DE APLICACIONES WEB EN ENTORNO SERVIDOR</h3>
             <?php
             /*
@@ -36,7 +36,7 @@
             define("MAX", 3);
 
             // Array de errores, utilizado para mostrar el mensaje de error correspondiente al valor devuelto por la funcion de validacion
-            $arrayErrores = array(" ", "No ha introducido ningun valor<br />", "El valor introducido no es valido<br />", "Tamaño minimo no valido<br />", "Tamaño maximo no valido<br />");
+            $arrayErrores = array(" ", "<p style='color:red;'><strong>No ha introducido ningun valor</strong></p>", "<p style='color:red;'><strong>El valor introducido no es valido</strong></p>", "<p style='color:red;'><strong>Tamaño minimo no valido</strong></p>", "<p style='color:red;'><strong>Tamaño maximo no valido</strong></p><");
 
             //Variable de control, utilizada para saber si algun campo introducido es erroneo
             $error = false;
@@ -84,6 +84,39 @@
                 'Muy Buenos'
             );
             if (filter_has_var(INPUT_POST, 'Enviar')) {//Si hemos pulsado el boton de Enviar
+            
+                 //Ejecutamos la funcion de validacion y recogemos el valor devuelto
+                $valida = validarDNI(limpiarCampos(strtoupper($_POST['DNI'])));
+                //Si el valor es distinto de 0 ha habido un error y procedemos a tratarlo
+                if ($valida != 0) {
+                    //Asignamos el error producido al valor correspondiente en el array de errores
+                    $erroresCampos['DNI'] = $arrayErrores[$valida];
+                    //Como ha habido un error, la variable de control $error toma el valor true
+                    $error = true;
+                    //Si no ha habido ningun error, guardamos el valor enviado en el array de cuestionario
+                } else {
+                    //Si no ha habido ningun error, guardamos el valor enviado en el array de cuestionario
+                    $consultaDNI = "SELECT * FROM Encuesta WHERE DNI = :DNI";
+                    $DNITemp = limpiarCampos(strtoupper($_POST['DNI']));
+                    $sentencia = $db->prepare($consultaDNI);
+                    $sentencia->bindParam(':DNI',$DNITemp);
+                    try {
+                        $sentencia->execute();
+                        if($sentencia->rowCount() != 0){
+                            $erroresCampos['DNI'] = "<p style='color:red;'><strong>Ya existe una encuesta con este DNI</strong></p>";
+                            $error = true;
+                        }
+                        else{
+                            $encuesta['DNI'] = limpiarCampos(strtoupper($_POST['DNI']));
+                        }
+                    }
+                    catch(PDOException $PdoE){
+                        echo "Error al realizar la consulta";
+                        unset($db);
+                    }
+                            
+                }
+                
                 //Ejecutamos la funcion de validacion y recogemos el valor devuelto
                 $valida = validarCadenaAlfabetica(limpiarCampos($_POST['Nombre']), 1, 50);
                 //Si el valor es distinto de 0 ha habido un error y procedemos a tratarlo
@@ -126,20 +159,6 @@
                 } else {
                     //Si no ha habido ningun error, guardamos el valor enviado en el array de cuestionario
                     $encuesta['Apellido2'] = limpiarCampos($_POST['Apellido2']);
-                }
-
-                //Ejecutamos la funcion de validacion y recogemos el valor devuelto
-                $valida = validarDNI(limpiarCampos(strtoupper($_POST['DNI'])));
-                //Si el valor es distinto de 0 ha habido un error y procedemos a tratarlo
-                if ($valida != 0) {
-                    //Asignamos el error producido al valor correspondiente en el array de errores
-                    $erroresCampos['DNI'] = $arrayErrores[$valida];
-                    //Como ha habido un error, la variable de control $error toma el valor true
-                    $error = true;
-                    //Si no ha habido ningun error, guardamos el valor enviado en el array de cuestionario
-                } else {
-                    //Si no ha habido ningun error, guardamos el valor enviado en el array de cuestionario
-                    $encuesta['DNI'] = limpiarCampos(strtoupper($_POST['DNI']));
                 }
 
                 $valida = validarTelefono(limpiarCampos($_POST['Telefono']));
