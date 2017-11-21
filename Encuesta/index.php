@@ -8,11 +8,13 @@
         <title>Seguimiento</title>
     </head>
     <body >
-<div class="w3-container w3-light-blue" style="width:60%; margin:auto; padding: 40px; height: 100%;">
+<div class="w3-container w3-light-blue" style="width:60%; margin:auto; padding: 40px; height: 100%; text-align:center;">
     
-    <a class="w3-tag w3-tag w3-padding w3-round-large w3-light-grey"  href="seguimiento.php">Seguimiento.php</a><a class="w3-tag w3-tag w3-padding w3-round-large w3-light-grey"  href="mostrarCodigo.php?ruta=seguimiento.php">Ver codigo Seguimiento</a>
-    <a  class="w3-tag w3-tag w3-padding w3-round-large w3-light-grey"  href="encuesta.php">Encuesta.php</a> <a class="w3-tag w3-tag w3-padding w3-round-large w3-light-grey"  href="mostrarCodigo.php?ruta=encuesta.php">Ver codigo Encuesta</a>
-    
+   
+    <a  class="w3-tag w3-tag w3-padding w3-round-large w3-light-grey"  href="encuesta.php">Encuesta.php</a> 
+    <a class="w3-tag w3-tag w3-padding w3-round-large w3-light-grey"  href="mostrarCodigo.php?ruta=encuesta.php">Ver codigo Encuesta</a><br /><br />
+    <a class="w3-tag w3-tag w3-padding w3-round-large w3-light-grey"  href="seguimiento.php">Seguimiento.php</a>
+    <a class="w3-tag w3-tag w3-padding w3-round-large w3-light-grey"  href="mostrarCodigo.php?ruta=seguimiento.php">Ver codigo Seguimiento</a><br /><br /><br />
 </div>
 <?php
 

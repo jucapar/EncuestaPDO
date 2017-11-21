@@ -17,7 +17,7 @@ try {
 }
 
 $fecha = date('d-m-Y H:i:s');
-$consulta1 = "SELECT AVG(TIMESTAMPDIFF(YEAR, FechaNacimiento, CURDATE())) AS EdadMedia ,COUNT(*) AS NumeroParticipantes ,AVG(GradoSatisfaccion) AS MediaSatisfaccion, COUNT(DISTINCT IP) AS NumeroEquipos FROM Encuesta";
+$consulta1 = "SELECT AVG(TIMESTAMPDIFF(YEAR, FechaNacimiento, CURDATE())) AS EdadMedia ,COUNT(*) AS NumeroParticipantes ,AVG(GradoSatisfaccion) AS MediaSatisfaccion,AVG(HorasEstudio) AS MediaHorasEstudio, COUNT(DISTINCT IP) AS NumeroEquipos FROM Encuesta";
 $sentencia1 = $db->prepare($consulta1);
 $sentencia1->execute();
 $resultadoConsulta1 = $sentencia1->fetch(PDO::FETCH_OBJ);
@@ -52,8 +52,11 @@ $sentencia3->execute();
 
             echo("<strong>Promedio de grado de satisfacción:</strong> ".round($resultadoConsulta1->MediaSatisfaccion,2,PHP_ROUND_HALF_UP)."<br /><br />");
 
+            echo("<strong>Promedio de horas de estudio:</strong> ".round($resultadoConsulta1->MediaHorasEstudio,2,PHP_ROUND_HALF_UP)."<br /><br />");
+            
             echo("<strong>Número de equipos desde los que se ha realizado la encuesta:</strong>         $resultadoConsulta1->NumeroEquipos<br /><br />");
 
+            
             echo "<strong>Dirección IP de los equipos desde los que se ha realizado la encuesta más de una vez:</strong><br /><br />";
             echo "<table class='w3-table-all' style='margin: 0 auto; width: 50%'><tr><th>Direccion IP</th><th>Numero de veces que ha realizado la encuesta</th></tr>";
             while ($resultadoConsulta2 = $sentencia2->fetch(PDO::FETCH_OBJ)) {
